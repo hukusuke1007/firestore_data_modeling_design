@@ -4,11 +4,13 @@
   "description": "firestore data modeling design tool",
   "main": "index.js",
   "scripts": {
+    "build": "node_modules/.bin/tsc",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hukusuke1007/fdm.git"
+    "url": "git+https://github.com/hukusuke1007/firestore_data_modeling_design.git"
   },
   "keywords": [
     "firestore"
@@ -16,7 +18,14 @@
   "author": "shohei",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hukusuke1007/fdm/issues"
+    "url": "https://github.com/hukusuke1007/firestore_data_modeling_design/issues"
   },
-  "homepage": "https://github.com/hukusuke1007/fdm#readme"
+  "homepage": "https://github.com/hukusuke1007/firestore_data_modeling_design#readme",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
+  }
 }
