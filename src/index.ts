@@ -1,11 +1,9 @@
-import * as fs from 'fs'
-import * as yaml from 'js-yaml'
+import { YamlRepository } from './repositories/yaml_repository'
 
 const yamlDir = `${process.cwd()}/sample_yaml`
 
 const execute = async () => {
-  const bytes = fs.readFileSync(`${yamlDir}/sample.yaml`, 'utf8')
-  const data = yaml.load(bytes)
+  const data = YamlRepository.fetch(`${yamlDir}/sample.yaml`)
   console.log(data)
 }
 

@@ -1,11 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require("fs");
-const yaml = require("js-yaml");
+const yaml_repository_1 = require("./repositories/yaml_repository");
 const yamlDir = `${process.cwd()}/sample_yaml`;
 const execute = async () => {
-    const bytes = fs.readFileSync(`${yamlDir}/sample.yaml`, 'utf8');
-    const data = yaml.load(bytes);
+    const data = yaml_repository_1.YamlRepository.fetch(`${yamlDir}/sample.yaml`);
     console.log(data);
 };
 execute();
