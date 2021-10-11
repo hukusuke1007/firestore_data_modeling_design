@@ -1,0 +1,22 @@
+{
+  "name": "fdmd",
+  "version": "0.0.1",
+  "description": "firestore data modeling design tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hukusuke1007/fdm.git"
+  },
+  "keywords": [
+    "firestore"
+  ],
+  "author": "shohei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hukusuke1007/fdm/issues"
+  },
+  "homepage": "https://github.com/hukusuke1007/fdm#readme"
+}

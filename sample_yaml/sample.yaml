@@ -1,0 +1,79 @@
+fdmd: 1.0
+info:
+  description: Firestore設計 => コード自動生成のサンプルyaml
+  version: 1.0.0
+  title: Firestore Data Modeling
+  termsOfService: https://github.com/hukusuke1007
+  contact:
+    email: xxxx@xxx.com
+  license:
+    name: xxx
+    url: https://github.com/hukusuke1007
+domains:
+  - name: Social
+    path: /social
+    description: ソーシャル機能を管理
+  - name: Master
+    path: /master
+    description: マスター管理
+docs:
+  - name: Poster
+    path: /social/${socialId}/posters/${posterId}
+    description: 投稿者の情報
+    code_generate: true
+    data:
+      - field: name
+        type: string
+        example: ケン
+      - field: age
+        type: int
+        example: 10
+      - field: image
+        type: map
+        map:
+          name: ThumbnailImage
+          reference: ThumbnailImage
+      - field: createdAt
+        type: timestamp
+        example: "2021-09-16T13:10:52+09:00"
+      - field: updatedAt
+        type: timestamp
+        example: "2021-09-16T13:10:52+09:00"
+      - field: posts
+        type: collection,post
+  - name: Post
+    path: /social/${socialId}/posters/${posterId}/posts/${postId}
+    description: 投稿情報
+    code_generate: true
+    data:
+      - field: title
+        type: string
+        example: タイトル
+      - field: text
+        type: string
+        example: テキスト内容
+      - field: createdAt
+        type: timestamp
+        example: "2021-09-16T13:10:52+09:00"
+      - field: updatedAt
+        type: timestamp
+        example: "2021-09-16T13:10:52+09:00"
+  - name: Color
+    path: /master/${masterId}/colors/${colorId}
+    description: カラー情報
+    code_generate: true
+    data:
+      - field: codes
+        type: string,array
+        example: ["000000", FFFFFF]
+maps:
+  - name: ThumbnailImage
+    description: 画像情報
+    code_generate: true
+    data:
+      - field: url
+        type: string
+        example: https://sample/image.jpg
+      - field: path
+        type: string
+        example: /social/${socialId}/users/${userId}/images/${imageId}
