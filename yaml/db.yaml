@@ -1,4 +1,4 @@
-fdmd: 1.0
+fdmd: 1.0.0
 info:
   description: Firestore設計 => コード自動生成のサンプルyaml
   version: '1.0.0'
