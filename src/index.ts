@@ -4,7 +4,7 @@ const yamlDir = `${process.cwd()}/sample_yaml`
 
 const execute = async () => {
   const data = YamlRepository.fetch(`${yamlDir}/sample.yaml`)
-  console.log(data)
+  console.log(JSON.stringify(data))
 }
 
 execute()

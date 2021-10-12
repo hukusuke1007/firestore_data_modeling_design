@@ -1,7 +1,7 @@
 fdmd: 1.0
 info:
   description: Firestore設計 => コード自動生成のサンプルyaml
-  version: 1.0.0
+  version: '1.0.0'
   title: Firestore Data Modeling
   termsOfService: https://github.com/hukusuke1007
   contact:
@@ -20,7 +20,7 @@ docs:
   - name: Poster
     path: /social/${socialId}/posters/${posterId}
     description: 投稿者の情報
-    code_generate: true
+    codeGenerate: true
     data:
       - field: name
         type: string
@@ -35,16 +35,16 @@ docs:
           reference: ThumbnailImage
       - field: createdAt
         type: timestamp
-        example: "2021-09-16T13:10:52+09:00"
+        example: '2021-09-16T13:10:52+09:00'
       - field: updatedAt
         type: timestamp
-        example: "2021-09-16T13:10:52+09:00"
+        example: '2021-09-16T13:10:52+09:00'
       - field: posts
         type: collection,post
   - name: Post
     path: /social/${socialId}/posters/${posterId}/posts/${postId}
     description: 投稿情報
-    code_generate: true
+    codeGenerate: true
     data:
       - field: title
         type: string
@@ -54,22 +54,22 @@ docs:
         example: テキスト内容
       - field: createdAt
         type: timestamp
-        example: "2021-09-16T13:10:52+09:00"
+        example: '2021-09-16T13:10:52+09:00'
       - field: updatedAt
         type: timestamp
-        example: "2021-09-16T13:10:52+09:00"
+        example: '2021-09-16T13:10:52+09:00'
   - name: Color
     path: /master/${masterId}/colors/${colorId}
     description: カラー情報
-    code_generate: true
+    codeGenerate: true
     data:
       - field: codes
         type: string,array
-        example: ["000000", FFFFFF]
+        example: ['000000', FFFFFF]
 maps:
   - name: ThumbnailImage
     description: 画像情報
-    code_generate: true
+    codeGenerate: true
     data:
       - field: url
         type: string
