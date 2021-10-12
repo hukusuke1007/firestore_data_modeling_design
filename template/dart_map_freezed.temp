@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../converters/date_time_timestamp_converter.dart';
 
 part '$$doc_name.freezed.dart';
 part '$$doc_name.g.dart';
@@ -13,7 +12,4 @@ class $$DOCNAME with _$$$DOCNAME {
 
   factory $$DOCNAME.fromJson(Map<String, dynamic> json) =>
       _$$$DOCNAMEFromJson(json);
-
-  static String get collectionPath => throw UnimplementedError(); // $$COLLECTIONPATH
-  static String docPath(String id) => throw UnimplementedError(); // $$COLLECTIONPATH/$id
 }

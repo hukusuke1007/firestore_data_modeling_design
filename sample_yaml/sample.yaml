@@ -34,7 +34,6 @@ docs:
       - field: image
         type: map,nullable
         map:
-          name: ThumbnailImage
           reference: ThumbnailImage
       - field: createdAt
         type: timestamp,nullable

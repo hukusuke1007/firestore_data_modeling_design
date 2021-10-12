@@ -1,12 +1,20 @@
 import { Utils } from '../utils/utils'
 import { dataType } from './constants'
+import { MapField } from './map_field'
 
 const isValid = (data: string): boolean => Object.values(dataType).indexOf(data) !== -1
 export const isCollection = (data?: string): boolean => data.split(',').includes(dataType.collection)
 
 export class DataField {
-  static getDocDartType(type?: string): string | null {
-    const getType = (split: string[]): string | null => {
+  static getMapModelNames(dataField: DataField[]): string[] {
+    return [...new Set(dataField.filter((e) => Utils.isNotNull(e.map?.reference)).map((e) => e.map?.reference))]
+  }
+  static existsDateTime(dataField: DataField[]): boolean {
+    return dataField.find((e) => Utils.isNotNull(e.type) && e.type.split(',')[0] === dataType.timestamp) !== undefined
+  }
+  static getDartType(dataField?: DataField): string | null {
+    const getType = (dataField: DataField): string | null => {
+      const split = dataField.type.split(',')
       if (isCollection(split[0])) {
         return null
       }
@@ -22,7 +30,11 @@ export class DataField {
         } else if (arg === dataType.timestamp) {
           result = '@DateTimeTimestampConverter() DateTime'
         } else if (arg === dataType.map) {
-          result = 'Map<String, dynamic>'
+          if (Utils.isNotNull(dataField.map?.reference)) {
+            result = `${dataField.map.reference}`
+          } else {
+            result = 'Map<String, dynamic>'
+          }
         } else if (arg === dataType.any) {
           result = 'dynamic'
         }
@@ -40,11 +52,10 @@ export class DataField {
       return result
     }
 
-    if (Utils.isNull(type)) {
+    if (Utils.isNull(dataField.type)) {
       return null
     }
-    const split = type.split(',')
-    return getType(split)
+    return getType(dataField)
   }
   constructor(init: Partial<DataField>) {
     Object.assign(this, init)
@@ -52,4 +63,5 @@ export class DataField {
   field?: string
   type?: string
   example?: any
+  map?: MapField
 }
