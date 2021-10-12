@@ -57,7 +57,7 @@ export class DartFreezedGeneratorRepository {
               .filter((e) => !isCollection(e.type))
               .map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
 
-            return new OutputData(mapModelNamesLine, dataFieldsLine, `${mapPath}/${mapSnakeName}.dart`, map)
+            return new OutputData(mapModelNamesLine, dataFieldsLine, `${mapPath}/${mapSnakeName}.dart`, [], map)
           })
       : []
     for (const data of outputMapData) {
@@ -107,11 +107,28 @@ export class DartFreezedGeneratorRepository {
             }
 
             // DataField
-            const dataFieldsLine = getDataFields(doc, fdmd)
+            const dataFieldsLine = dataFields
               .filter((e) => !isCollection(e.type))
               .map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
+            const collectionLine = dataFields
+              .filter((e) => isCollection(e.type))
+              .map(
+                (e) =>
+                  `  static String ${Utils.firstCharLower(
+                    e.field,
+                  )}CollectionPath(String parentId) => throw UnimplementedError();\n` +
+                  `  static String ${Utils.firstCharLower(
+                    e.field,
+                  )}DocPath(String parentId, String id) => throw UnimplementedError();\n`,
+              )
 
-            return new OutputData(mapModelNamesLine, dataFieldsLine, `${docPath}/${docSnakeName}.dart`, doc)
+            return new OutputData(
+              mapModelNamesLine,
+              dataFieldsLine,
+              `${docPath}/${docSnakeName}.dart`,
+              collectionLine,
+              doc,
+            )
           })
       : []
     for (const data of outputDocsData) {
@@ -135,6 +152,9 @@ export class DartFreezedGeneratorRepository {
       // DataField
       const dataFieldOffset = lines.findIndex((e) => e.includes('factory')) + 1 // データフィールドを追加する行
       lines.splice(dataFieldOffset, 0, ...data.dataFieleds)
+
+      const collectionOffset = lines.findIndex((e) => e.includes('static String docPath')) + 1 // データフィールドを追加する行
+      lines.splice(collectionOffset, 0, ...data.collectionFieleds)
 
       // Write
       const stream = fs.createWriteStream(data.outputFilePath, { encoding: 'utf8' })

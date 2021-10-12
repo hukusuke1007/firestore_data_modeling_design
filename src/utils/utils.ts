@@ -15,4 +15,7 @@ export class Utils {
       return '_' + s.charAt(0).toLowerCase()
     })
   }
+  static firstCharLower = (p: string): string => {
+    return p.charAt(0).toLowerCase() + p.slice(1)
+  }
 }
