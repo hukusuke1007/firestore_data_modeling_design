@@ -9,8 +9,10 @@ export class Utils {
       return s.charAt(1).toUpperCase()
     })
 
-  static camelToSnake = (data: string): string =>
-    data.replace(/([A-Z])/g, (s) => {
+  static camelToSnake = (p: string): string => {
+    const data = p.charAt(0).toLowerCase() + p.slice(1)
+    return data.replace(/([A-Z])/g, (s) => {
       return '_' + s.charAt(0).toLowerCase()
     })
+  }
 }
