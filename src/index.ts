@@ -14,10 +14,10 @@ const execute = async () => {
   try {
     console.log('🏃 start generating.')
     cleanup(outputPath)
-
     const data = YamlRepository.fetch(`${yamlDir}/sample.yaml`)
-    // Dart
-    DartGeneratorRepository.generate(data, `${outputPath}/dart`)
+
+    // Dart - freezed
+    DartGeneratorRepository.generateToFreezed(data, `${outputPath}/dart`)
 
     // TypeScript todo
     // TypeScript - Ballcap todo
