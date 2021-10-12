@@ -28,11 +28,11 @@ node_modules/.bin/fdmd
 node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir template
 ```
 
-| command options | details                               | remarks                          |
-| --------------- | ------------------------------------- | -------------------------------- |
-| --generate      | all (default all)                     | auto generate code type          |
-| --inputFile     | modeling yaml (default yaml/db.yaml ) | input data to auto generate code |
-| --tempDir       | template code (default template)      | input data to auto generate code |
+| command options | details                                 | remarks                          |
+| --------------- | --------------------------------------- | -------------------------------- |
+| --generate      | all (default `all`)                     | auto generate code type          |
+| --inputFile     | modeling yaml (default `yaml/db.yaml` ) | input data to auto generate code |
+| --tempDir       | template code (default `template`)      | input data to auto generate code |
 
 ### Support language
 
@@ -44,7 +44,7 @@ node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir templat
 | TypeScript                 | -       | -                                           |
 | TypeScript - Ballcap-Admin | -       | -                                           |
 | Swift                      | -       | -                                           |
-| Swift = Ballcap            | -       | -                                           |
+| Swift - Ballcap            | -       | -                                           |
 | Kotlin                     | -       | -                                           |
 
 ## Data Modeling
