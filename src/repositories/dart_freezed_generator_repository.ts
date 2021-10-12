@@ -1,10 +1,10 @@
 import * as fs from 'fs'
 import { DataField } from '../entities/data_field'
-import { CollectionField } from '../entities/collection_field'
 import { Doc } from '../entities/doc'
 import { Fdmd } from '../entities/fdmd'
 import { Utils } from '../utils/utils'
 import { OutputData } from '../entities/output_data'
+import { dataType } from '../entities/constants'
 
 const getDataFields = (doc: Doc, fdmd: Fdmd) => {
   if (Utils.isNotNull(doc.dataReference)) {
@@ -14,6 +14,47 @@ const getDataFields = (doc: Doc, fdmd: Fdmd) => {
   }
   const dataFields = Utils.isNotNull(doc.data) ? doc.data.filter((e) => Utils.isNotNull(e.field)) : []
   return dataFields
+}
+
+const getDartType = (dataField?: DataField): string | null => {
+  if (Utils.isNull(dataField.type)) {
+    return null
+  }
+  const split = dataField.type.split(',')
+  let result = ''
+  if (DataField.isValid(split[0])) {
+    const arg = split[0]
+    if (arg === dataType.string) {
+      result = 'String'
+    } else if (arg === dataType.int) {
+      result = 'int'
+    } else if (arg === dataType.double) {
+      result = 'double'
+    } else if (arg === dataType.bool) {
+      result = 'bool'
+    } else if (arg === dataType.timestamp) {
+      result = '@DateTimeTimestampConverter() DateTime'
+    } else if (arg === dataType.map) {
+      if (Utils.isNotNull(dataField.map?.reference)) {
+        result = `${dataField.map.reference}`
+      } else {
+        result = 'Map<String, dynamic>'
+      }
+    } else if (arg === dataType.any) {
+      result = 'dynamic'
+    }
+  }
+  const array = split.includes(dataType.array)
+  const nullable = split.includes(dataType.nullable)
+  if (array) {
+    result = `List<${result}>`
+  }
+  if (nullable) {
+    result = `${result}?`
+  } else {
+    result = `required ${result}`
+  }
+  return result
 }
 
 export class DartFreezedGeneratorRepository {
@@ -53,7 +94,7 @@ export class DartFreezedGeneratorRepository {
             }
 
             // DataField
-            const dataFieldsLine = getDataFields(map, fdmd).map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
+            const dataFieldsLine = getDataFields(map, fdmd).map((e) => `    ${getDartType(e)} ${e.field},`)
 
             return new OutputData(mapModelNamesLine, dataFieldsLine, `${mapPath}/${mapSnakeName}.dart`, [], map)
           })
@@ -105,7 +146,7 @@ export class DartFreezedGeneratorRepository {
             }
 
             // DataField
-            const dataFieldsLine = dataFields.map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
+            const dataFieldsLine = dataFields.map((e) => `    ${getDartType(e)} ${e.field},`)
 
             // Collections
             const collectionLine = Utils.isNotNull(doc.collections)

@@ -1,0 +1,7 @@
+import { Doc, Field, Codable, Model, CollectionReference, Collection } from '@1amageek/ballcap-admin'
+
+export class $$DOCNAME extends Doc {
+  static collectionReference(): CollectionReference {
+    return super.collectionReference().doc('$$PARENTDOCPATH').collection('$COLLECTIONNAME')
+  }
+}

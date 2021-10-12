@@ -1,0 +1,4 @@
+import { Field, Model, Codable } from '@1amageek/ballcap-admin'
+
+export class $$DOCNAME extends Model {
+}
