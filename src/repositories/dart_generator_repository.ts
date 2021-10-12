@@ -44,7 +44,7 @@ export class DartGeneratorRepository {
       let lines = code.split(/\r?\n/)
       const offset = lines.findIndex((e) => e.includes('factory')) + 1 // データフィールドを追加する行
       lines.splice(offset, 0, ...dataFieldsLine)
-      console.log(lines)
+      // console.log(lines)
 
       const dartFilePath = `${docPath}/${docSnakeName}.dart`
       const stream = fs.createWriteStream(dartFilePath, { encoding: 'utf8' })
