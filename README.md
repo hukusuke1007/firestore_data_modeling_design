@@ -38,7 +38,7 @@ node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir templat
 
 | generate code              | support | code example                                |
 | -------------------------- | ------- | ------------------------------------------- |
-| All                        | ◯       | -                                           |
+| All                        | ◯       | [code](./example/fdmd_output/)              |
 | Dart - Freezed             | ◯       | [code](./example/fdmd_output/dart_freezed/) |
 | Dart                       | -       | -                                           |
 | TypeScript                 | -       | -                                           |
