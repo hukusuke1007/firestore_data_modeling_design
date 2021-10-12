@@ -6,25 +6,26 @@ import { DartFreezedGeneratorRepository } from './repositories/dart_freezed_gene
 import { YamlRepository } from './repositories/yaml_repository'
 import { Utils } from './utils/utils'
 
-const generate =
-  process.argv.indexOf('--generate') !== -1 ? process.argv[process.argv.indexOf('--generate') + 1] : 'all'
-const yamlFilePathName =
-  process.argv.indexOf('--inputFile') !== -1 ? process.argv[process.argv.indexOf('--inputFile') + 1] : 'yaml/db.yaml'
-const tempFilePathName =
-  process.argv.indexOf('--inputFile') !== -1 ? process.argv[process.argv.indexOf('--tempDir') + 1] : 'template'
+const generateOptionIndex = process.argv.indexOf('--generate')
+const inputYamlOptionIndex = process.argv.indexOf('--inputFile')
+const tempOptionIndex = process.argv.indexOf('--tempDir')
+
+const generate = generateOptionIndex !== -1 ? process.argv[generateOptionIndex + 1] : 'all'
+const yamlFilePathName = inputYamlOptionIndex !== -1 ? process.argv[inputYamlOptionIndex + 1] : 'yaml/db.yaml'
+const tempFilePathName = tempOptionIndex !== -1 ? process.argv[tempOptionIndex + 1] : 'template'
 
 const yamlFilePath = `${process.cwd()}/${yamlFilePathName}`
 const outputPath = `${process.cwd()}/fdmd_output`
 const tempPath = `${process.cwd()}/${tempFilePathName}`
 
 const cleanup = async (path: string) => {
-  console.log('🧹 cleanup.')
+  console.log('🧹 cleanup')
   rimraf.sync(path)
 }
 
 const execute = async () => {
   try {
-    console.log('🏃 start generating.', generate)
+    console.log('🏃 generate type', generate)
     cleanup(outputPath)
     const data = YamlRepository.fetch(yamlFilePath)
 
@@ -42,7 +43,7 @@ const execute = async () => {
     // Swift - Ballcap todo
     // Kotlin todo
     // HTML todo
-    console.log('✅ successfully generated.')
+    console.log('✅ successfully generated')
   } catch (e) {
     console.error(e)
     console.log('failed.')

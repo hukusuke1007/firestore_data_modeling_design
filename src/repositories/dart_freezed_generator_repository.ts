@@ -17,8 +17,7 @@ const getDataFields = (doc: Doc, fdmd: Fdmd) => {
 
 export class DartFreezedGeneratorRepository {
   static execute(fdmd: Fdmd, outputPath: string, tempPath: string) {
-    // console.log(JSON.stringify(fdmd))
-    console.log('🌱 dart.')
+    console.log('🌱 generate dart')
     fs.mkdirSync(outputPath, { recursive: true })
 
     const domainDirNames = Utils.isNotNull(fdmd.domains)
