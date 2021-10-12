@@ -14,13 +14,13 @@ export class DartGeneratorRepository {
       ? fdmd.domains.filter((e) => Utils.isNotNull(e.name)).map((e) => e.name)
       : []
 
-    // domain dir cleate
+    // cleate domain dir
     for (const name of domainDirNames) {
       const domainPath = `${outputPath}/${Utils.camelToSnake(name)}`
       fs.mkdirSync(domainPath, { recursive: true })
     }
 
-    // doc dir and files cleate
+    // cleate doc dir and files
     const docs = Utils.isNotNull(fdmd.docs)
       ? fdmd.docs.filter((e) => Utils.isNotNull(e.name) && e.codeGenerate === true)
       : []
@@ -54,9 +54,12 @@ export class DartGeneratorRepository {
       stream.end()
     }
 
-    /// Create date_time_timestamp_converter
+    /// create date_time_timestamp_converter
+    fs.mkdirSync(`${outputPath}/converters`, { recursive: true })
     const dTTCtemplate = fs.readFileSync(`${tempPath}/date_time_timestamp_converter.temp`, 'utf8')
-    const stream = fs.createWriteStream(`${outputPath}/date_time_timestamp_converter.dart`, { encoding: 'utf8' })
+    const stream = fs.createWriteStream(`${outputPath}/converters/date_time_timestamp_converter.dart`, {
+      encoding: 'utf8',
+    })
     stream.write(dTTCtemplate)
     stream.end()
   }
