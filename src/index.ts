@@ -4,6 +4,7 @@ import { YamlRepository } from './repositories/yaml_repository'
 
 const yamlDir = `${process.cwd()}/sample_yaml`
 const outputPath = `${process.cwd()}/output`
+const tempPath = `${process.cwd()}/template`
 
 const cleanup = async (path: string) => {
   console.log('🧹 cleanup.')
@@ -17,7 +18,7 @@ const execute = async () => {
     const data = YamlRepository.fetch(`${yamlDir}/sample.yaml`)
 
     // Dart - freezed
-    DartGeneratorRepository.generateToFreezed(data, `${outputPath}/dart`)
+    DartGeneratorRepository.generateToFreezed(data, `${outputPath}/dart`, `${tempPath}/dart_freezed.temp`)
 
     // TypeScript todo
     // TypeScript - Ballcap todo
