@@ -16,9 +16,9 @@ npm install --save-dev fdmd
 
 Copy from yaml dir and template dir to your current directory.
 
-[yaml db sample](./yaml/)
+[yaml](./yaml/)
 
-[generate code template](./template/)
+[template](./template/)
 
 ```sh
 # generate code
