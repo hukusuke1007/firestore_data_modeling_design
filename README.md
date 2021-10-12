@@ -1,5 +1,9 @@
 # fdmd
 
+Firebase Data Modeling Desing Tool.
+
+yaml => firestore modeling code.
+
 https://www.npmjs.com/package/fdmd
 
 ## Install
@@ -8,18 +12,149 @@ https://www.npmjs.com/package/fdmd
 npm install --save-dev fdmd
 ```
 
+Copy from yaml dir and template dir to your current directory.
+
+[yaml db sample](./yaml/)
+
+[generate code template](./template/)
+
 Generate code.
 
-```
+```sh
 node_modules/.bin/fdmd
 ```
 
-```
+```sh
 node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir template
 ```
+
+| command line | detail                                | remarks                          |
+| ------------ | ------------------------------------- | -------------------------------- |
+| --generate   | all (default all)                     | auto generate code type          |
+| --inputFile  | modeling yaml (default yaml/db.yaml ) | input data to auto generate code |
+| --tempDir    | template code (default template)      | input data to auto generate code |
+
+### Support language
+
+| generate code  | support |
+| -------------- | ------- |
+| all            | ◯       |
+| dartFreezed    | ◯       |
+| dart           | -       |
+| ts             | -       |
+| tsBallcapAdmin | -       |
+| swift          | -       |
+| swiftBallcap   | -       |
+| kotlin         | -       |
 
 ## Data Modeling
 
 Can be design data modeling with yaml file.
 
-[yaml sample](./yaml/db.yaml)
+| type       | support |
+| ---------- | ------- |
+| string     | ◯       |
+| int        | ◯       |
+| double     | ◯       |
+| timestamp  | ◯       |
+| map        | ◯       |
+| array      | ◯       |
+| any        | ◯       |
+| collection | ◯       |
+| nullable   | ◯       |
+
+### yaml
+
+[yaml db sample](./yaml/db.yaml)
+
+#### Document
+
+```yaml
+docs:
+  - name: Poster
+    path: /social/${socialId}/posters/${posterId}
+    description: 投稿者の情報
+    codeGenerate: true
+    data:
+      - field: id
+        type: string
+        example: DocumentId
+      - field: name
+        type: string,nullable
+        example: ケン
+      - field: age
+        type: int,nullable
+        example: 10
+      - field: createdAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
+      - field: updatedAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
+```
+
+Map model
+
+```yaml
+maps:
+  - name: ThumbnailImage
+    description: 画像情報
+    codeGenerate: true
+    data:
+      - field: url
+        type: string
+        example: https://sample/image.jpg
+      - field: path
+        type: string
+        example: /social/${socialId}/users/${userId}/images/${imageId}
+```
+
+Reference map model
+
+```yaml
+docs:
+  - name: Poster
+    path: /social/${socialId}/posters/${posterId}
+    description: 投稿者の情報
+    codeGenerate: true
+    data:
+      - field: image
+        type: map,nullable
+        map:
+          reference: ThumbnailImage # Same maps name
+maps:
+  - name: ThumbnailImage # Same docs name
+    description: 画像情報
+    codeGenerate: true
+    data:
+      - field: url
+        type: string
+        example: https://sample/image.jpg
+      - field: path
+        type: string
+        example: /social/${socialId}/users/${userId}/images/${imageId}
+```
+
+#### Collection
+
+```yaml
+docs:
+  - name: Poster
+    path: /social/${socialId}/posters/${posterId}
+    description: 投稿者の情報
+    codeGenerate: true
+    data:
+      - field: posts
+        type: collection,Post
+  - name: Post
+    path: /social/${socialId}/posters/${posterId}/posts/${postId}
+    description: 投稿情報
+    codeGenerate: true
+    data:
+      - field: title
+        type: string,nullable
+        example: タイトル
+      - field: text
+        type: string,nullable
+        example: テキスト内容
+```
