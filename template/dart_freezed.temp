@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../date_time_timestamp_converter.dart';
 
 part '$$doc_name.freezed.dart';
 part '$$doc_name.g.dart';
@@ -7,7 +8,6 @@ part '$$doc_name.g.dart';
 @freezed
 class $$DOCNAME with _$$$DOCNAME {
   factory $$DOCNAME({
-
   }) = _$$DOCNAME;
   $$DOCNAME._();
 

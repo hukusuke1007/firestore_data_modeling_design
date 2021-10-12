@@ -7,4 +7,5 @@ export const dataType = {
   array: 'array',
   any: 'any',
   collection: 'collection',
+  nullable: 'nullable',
 }

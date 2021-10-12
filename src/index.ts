@@ -18,7 +18,7 @@ const execute = async () => {
     const data = YamlRepository.fetch(`${yamlDir}/sample.yaml`)
 
     // Dart - freezed
-    DartGeneratorRepository.generateToFreezed(data, `${outputPath}/dart`, `${tempPath}/dart_freezed.temp`)
+    DartGeneratorRepository.generateToFreezed(data, `${outputPath}/dart`, `${tempPath}`)
 
     // TypeScript todo
     // TypeScript - Ballcap todo
