@@ -42,7 +42,7 @@ docs:
         type: timestamp,nullable
         example: '2021-09-16T13:10:52+09:00'
       - field: posts
-        type: collection,post
+        type: collection,Post
   - name: Post
     path: /social/${socialId}/posters/${posterId}/posts/${postId}
     description: 投稿情報
@@ -54,12 +54,22 @@ docs:
       - field: text
         type: string,nullable
         example: テキスト内容
+      - field: likeCount
+        type: int,nullable
+        example: いいね数
       - field: createdAt
         type: timestamp,nullable
         example: '2021-09-16T13:10:52+09:00'
       - field: updatedAt
         type: timestamp,nullable
         example: '2021-09-16T13:10:52+09:00'
+      - field: likes
+        type: collection,Like
+  - name: Like
+    path: /social/${socialId}/posters/${posterId}/posts/${postId}/likes/${likeId}
+    description: 投稿情報
+    codeGenerate: true
+    dataReference: Poster
   - name: Color
     path: /master/${masterId}/colors/${colorId}
     description: カラー情報

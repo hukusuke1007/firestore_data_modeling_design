@@ -2,7 +2,7 @@
 
 import * as rimraf from 'rimraf'
 import { generateType } from './entities/constants'
-import { DartGeneratorRepository } from './repositories/dart_generator_repository'
+import { DartFreezedGeneratorRepository } from './repositories/dart_freezed_generator_repository'
 import { YamlRepository } from './repositories/yaml_repository'
 import { Utils } from './utils/utils'
 
@@ -30,7 +30,7 @@ const execute = async () => {
 
     // Dart - freezed
     if (generate === generateType.all || generate == generateType.dartFreezed) {
-      DartGeneratorRepository.generateToFreezed(
+      DartFreezedGeneratorRepository.execute(
         data,
         `${outputPath}/${Utils.camelToSnake(generateType.dartFreezed)}`,
         `${tempPath}`,

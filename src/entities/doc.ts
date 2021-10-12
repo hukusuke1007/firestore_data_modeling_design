@@ -28,5 +28,6 @@ export class Doc {
   path?: string
   description?: string
   codeGenerate?: boolean
+  dataReference?: string
   data?: DataField[]
 }
