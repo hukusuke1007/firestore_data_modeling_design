@@ -1,4 +1,4 @@
-import { Domain } from 'domain'
+import { Domain } from './domain'
 import { Doc } from './doc'
 import { Info } from './info'
 

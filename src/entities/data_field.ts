@@ -4,5 +4,5 @@ export class DataField {
   }
   field?: string
   type?: string
-  example?: string | string[]
+  example?: any
 }

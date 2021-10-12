@@ -3,4 +3,14 @@ export class Utils {
   static isNull = (data: any): boolean => (data === undefined || data === null ? true : false)
   static isNullEmpty = (value?: string | null): boolean => Utils.isNull(value) || Utils.isEmpty(value)
   static isEmpty = (value: string): boolean => value.trim().length === 0
+
+  static snakeToCamel = (data: string): string =>
+    data.replace(/_./g, (s) => {
+      return s.charAt(1).toUpperCase()
+    })
+
+  static camelToSnake = (data: string): string =>
+    data.replace(/([A-Z])/g, (s) => {
+      return '_' + s.charAt(0).toLowerCase()
+    })
 }
