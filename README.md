@@ -11,11 +11,11 @@ npm install --save-dev fdmd
 Generate code.
 
 ```
-fdmd
+node_modules/.bin/fdmd
 ```
 
 ```
-fdmd --generate all --inputFile yaml/db.yaml --tempDir temp
+node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir template
 ```
 
 ## Data Modeling

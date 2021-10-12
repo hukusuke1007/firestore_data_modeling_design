@@ -1,0 +1,81 @@
+fdmd: 1.0
+info:
+  description: Firestore設計 => コード自動生成のサンプルyaml
+  version: '1.0.0'
+  title: Firestore Data Modeling
+  termsOfService: https://github.com/hukusuke1007
+  contact:
+    email: xxxx@xxx.com
+  license:
+    name: xxx
+    url: https://github.com/hukusuke1007
+domains:
+  - name: Social
+    path: /social
+    description: ソーシャル機能を管理
+  - name: Master
+    path: /master
+    description: マスター管理
+docs:
+  - name: Poster
+    path: /social/${socialId}/posters/${posterId}
+    description: 投稿者の情報
+    codeGenerate: true
+    data:
+      - field: id
+        type: string
+        example: DocumentId
+      - field: name
+        type: string,nullable
+        example: ケン
+      - field: age
+        type: int,nullable
+        example: 10
+      - field: image
+        type: map,nullable
+        map:
+          reference: ThumbnailImage
+      - field: createdAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
+      - field: updatedAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
+      - field: posts
+        type: collection,post
+  - name: Post
+    path: /social/${socialId}/posters/${posterId}/posts/${postId}
+    description: 投稿情報
+    codeGenerate: true
+    data:
+      - field: title
+        type: string,nullable
+        example: タイトル
+      - field: text
+        type: string,nullable
+        example: テキスト内容
+      - field: createdAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
+      - field: updatedAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
+  - name: Color
+    path: /master/${masterId}/colors/${colorId}
+    description: カラー情報
+    codeGenerate: true
+    data:
+      - field: codes
+        type: string,array,nullable
+        example: ['000000', FFFFFF]
+maps:
+  - name: ThumbnailImage
+    description: 画像情報
+    codeGenerate: true
+    data:
+      - field: url
+        type: string
+        example: https://sample/image.jpg
+      - field: path
+        type: string
+        example: /social/${socialId}/users/${userId}/images/${imageId}

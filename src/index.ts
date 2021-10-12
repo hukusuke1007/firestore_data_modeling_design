@@ -1,10 +1,13 @@
+#! /usr/bin/env node
+
 import * as rimraf from 'rimraf'
 import { generateType } from './entities/constants'
 import { DartGeneratorRepository } from './repositories/dart_generator_repository'
 import { YamlRepository } from './repositories/yaml_repository'
 import { Utils } from './utils/utils'
 
-const generate = process.argv.indexOf('--generate') !== -1 ? process.argv[process.argv.indexOf('--type') + 1] : 'all'
+const generate =
+  process.argv.indexOf('--generate') !== -1 ? process.argv[process.argv.indexOf('--generate') + 1] : 'all'
 const yamlFilePathName =
   process.argv.indexOf('--inputFile') !== -1 ? process.argv[process.argv.indexOf('--inputFile') + 1] : 'yaml/db.yaml'
 const tempFilePathName =
@@ -21,7 +24,7 @@ const cleanup = async (path: string) => {
 
 const execute = async () => {
   try {
-    console.log('🏃 start generating.')
+    console.log('🏃 start generating.', generate)
     cleanup(outputPath)
     const data = YamlRepository.fetch(yamlFilePath)
 

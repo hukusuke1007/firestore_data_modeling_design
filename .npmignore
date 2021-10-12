@@ -1,3 +1,9 @@
 tsconfig.json
 src
 yaml
+template
+example
+fdmd_output
+.vscode
+.eslintrc
+.prettierrc.json

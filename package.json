@@ -1,8 +1,11 @@
 {
   "name": "fdmd",
-  "version": "0.0.2",
+  "version": "0.0.10",
   "description": "firestore data modeling design tool",
   "main": "index.js",
+  "bin": {
+    "fdmd": "lib/index.js"
+  },
   "scripts": {
     "build": "node_modules/.bin/tsc",
     "start": "node_modules/.bin/tsc && node lib/index.js",

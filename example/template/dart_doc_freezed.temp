@@ -1,0 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '$$doc_name.freezed.dart';
+part '$$doc_name.g.dart';
+
+@freezed
+class $$DOCNAME with _$$$DOCNAME {
+  factory $$DOCNAME({
+  }) = _$$DOCNAME;
+  $$DOCNAME._();
+
+  factory $$DOCNAME.fromJson(Map<String, dynamic> json) =>
+      _$$$DOCNAMEFromJson(json);
+
+  static String get collectionPath => throw UnimplementedError(); // $$COLLECTIONPATH
+  static String docPath(String id) => throw UnimplementedError(); // $$COLLECTIONPATH/$id
+}

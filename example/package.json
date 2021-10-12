@@ -1,0 +1,14 @@
+{
+  "name": "fdmd_example",
+  "version": "1.0.0",
+  "description": "fdmd example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shohei",
+  "license": "MIT",
+  "devDependencies": {
+    "fdmd": "0.0.10"
+  }
+}
