@@ -1,4 +1,5 @@
 import { Utils } from '../utils/utils'
+import { CollectionField } from './collection_field'
 import { DataField } from './data_field'
 
 export class Doc {
@@ -30,4 +31,5 @@ export class Doc {
   codeGenerate?: boolean
   dataReference?: string
   data?: DataField[]
+  collections?: CollectionField[]
 }

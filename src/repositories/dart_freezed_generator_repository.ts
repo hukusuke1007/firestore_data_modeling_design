@@ -1,5 +1,6 @@
 import * as fs from 'fs'
-import { DataField, isCollection } from '../entities/data_field'
+import { DataField } from '../entities/data_field'
+import { CollectionField } from '../entities/collection_field'
 import { Doc } from '../entities/doc'
 import { Fdmd } from '../entities/fdmd'
 import { Utils } from '../utils/utils'
@@ -52,9 +53,7 @@ export class DartFreezedGeneratorRepository {
             }
 
             // DataField
-            const dataFieldsLine = getDataFields(map, fdmd)
-              .filter((e) => !isCollection(e.type))
-              .map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
+            const dataFieldsLine = getDataFields(map, fdmd).map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
 
             return new OutputData(mapModelNamesLine, dataFieldsLine, `${mapPath}/${mapSnakeName}.dart`, [], map)
           })
@@ -106,20 +105,20 @@ export class DartFreezedGeneratorRepository {
             }
 
             // DataField
-            const dataFieldsLine = dataFields
-              .filter((e) => !isCollection(e.type))
-              .map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
-            const collectionLine = dataFields
-              .filter((e) => isCollection(e.type))
-              .map(
-                (e) =>
-                  `  static String ${Utils.firstCharLower(
-                    e.field,
-                  )}CollectionPath(String parentId) => throw UnimplementedError();\n` +
-                  `  static String ${Utils.firstCharLower(
-                    e.field,
-                  )}DocPath(String parentId, String id) => throw UnimplementedError();\n`,
-              )
+            const dataFieldsLine = dataFields.map((e) => `    ${DataField.getDartType(e)} ${e.field},`)
+
+            // Collections
+            const collectionLine = Utils.isNotNull(doc.collections)
+              ? doc.collections.map(
+                  (e) =>
+                    `  static String ${Utils.firstCharLower(
+                      e.field,
+                    )}CollectionPath(String parentId) => throw UnimplementedError();\n` +
+                    `  static String ${Utils.firstCharLower(
+                      e.field,
+                    )}DocPath(String parentId, String id) => throw UnimplementedError();\n`,
+                )
+              : []
 
             return new OutputData(
               mapModelNamesLine,

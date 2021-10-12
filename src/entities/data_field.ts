@@ -3,7 +3,7 @@ import { dataType } from './constants'
 import { MapField } from './map_field'
 
 const isValid = (data: string): boolean => Object.values(dataType).indexOf(data) !== -1
-export const isCollection = (data?: string): boolean => data.split(',').includes(dataType.collection)
+// export const isCollection = (data?: string): boolean => data.split(',').includes(dataType.collection)
 
 export class DataField {
   static getMapModelNames(dataField: DataField[]): string[] {
@@ -15,9 +15,6 @@ export class DataField {
   static getDartType(dataField?: DataField): string | null {
     const getType = (dataField: DataField): string | null => {
       const split = dataField.type.split(',')
-      if (isCollection(split[0])) {
-        return null
-      }
       let result = ''
       if (isValid(split[0])) {
         const arg = split[0]
@@ -27,6 +24,8 @@ export class DataField {
           result = 'int'
         } else if (arg === dataType.double) {
           result = 'double'
+        } else if (arg === dataType.bool) {
+          result = 'bool'
         } else if (arg === dataType.timestamp) {
           result = '@DateTimeTimestampConverter() DateTime'
         } else if (arg === dataType.map) {

@@ -51,17 +51,17 @@ node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir templat
 
 Can be design data modeling with yaml file.
 
-| type       | support |
-| ---------- | ------- |
-| string     | ◯       |
-| int        | ◯       |
-| double     | ◯       |
-| timestamp  | ◯       |
-| map        | ◯       |
-| array      | ◯       |
-| any        | ◯       |
-| collection | ◯       |
-| nullable   | ◯       |
+| type      | support |
+| --------- | ------- |
+| string    | ◯       |
+| int       | ◯       |
+| double    | ◯       |
+| timestamp | ◯       |
+| map       | ◯       |
+| array     | ◯       |
+| any       | ◯       |
+| bool      | ◯       |
+| nullable  | ◯       |
 
 ### yaml
 
@@ -70,17 +70,17 @@ Can be design data modeling with yaml file.
 #### Document
 
 ```yaml
-docs:
+docs: # add
   - name: Poster
     path: /social/${socialId}/posters/${posterId}
     description: 投稿者の情報
-    codeGenerate: true
+    codeGenerate: true # code generate
     data:
       - field: id
-        type: string
+        type: string # non - nullable
         example: DocumentId
       - field: name
-        type: string,nullable
+        type: string,nullable # nullable
         example: ケン
       - field: age
         type: int,nullable
@@ -96,7 +96,7 @@ docs:
 Map model
 
 ```yaml
-maps:
+maps: # add
   - name: ThumbnailImage
     description: 画像情報
     codeGenerate: true
@@ -121,9 +121,9 @@ docs:
       - field: image
         type: map,nullable
         map:
-          reference: ThumbnailImage # Same maps name
+          reference: ThumbnailImage # add. same maps name
 maps:
-  - name: ThumbnailImage # Same docs name
+  - name: ThumbnailImage # add. same docs name
     description: 画像情報
     codeGenerate: true
     data:
@@ -144,8 +144,12 @@ docs:
     description: 投稿者の情報
     codeGenerate: true
     data:
+      - field: name
+        type: string,nullable
+        example: ケン
+    collections: # add
       - field: posts
-        type: collection,Post
+        type: Post
   - name: Post
     path: /social/${socialId}/posters/${posterId}/posts/${postId}
     description: 投稿情報

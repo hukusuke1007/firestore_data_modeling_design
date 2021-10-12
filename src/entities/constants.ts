@@ -2,11 +2,11 @@ export const dataType = {
   string: 'string',
   int: 'int',
   double: 'double',
+  bool: 'bool',
   timestamp: 'timestamp',
   map: 'map',
   array: 'array',
   any: 'any',
-  collection: 'collection',
   nullable: 'nullable',
 }
 
