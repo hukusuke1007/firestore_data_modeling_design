@@ -1,16 +1,18 @@
 # fdmd
 
-Firebase Data Modeling Desing Tool.
-
-yaml => firestore modeling code.
+Firebase Data Modeling Desing Tool. yaml => firestore modeling code.
 
 https://www.npmjs.com/package/fdmd
 
 ## Install
 
+Install to your project (recommand).
+
 ```sh
 npm install --save-dev fdmd
 ```
+
+## Run
 
 Copy from yaml dir and template dir to your current directory.
 
@@ -18,34 +20,32 @@ Copy from yaml dir and template dir to your current directory.
 
 [generate code template](./template/)
 
-Generate code.
-
 ```sh
+# generate code
 node_modules/.bin/fdmd
-```
 
-```sh
+# generate code with options
 node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir template
 ```
 
-| command line | detail                                | remarks                          |
-| ------------ | ------------------------------------- | -------------------------------- |
-| --generate   | all (default all)                     | auto generate code type          |
-| --inputFile  | modeling yaml (default yaml/db.yaml ) | input data to auto generate code |
-| --tempDir    | template code (default template)      | input data to auto generate code |
+| command options | details                               | remarks                          |
+| --------------- | ------------------------------------- | -------------------------------- |
+| --generate      | all (default all)                     | auto generate code type          |
+| --inputFile     | modeling yaml (default yaml/db.yaml ) | input data to auto generate code |
+| --tempDir       | template code (default template)      | input data to auto generate code |
 
 ### Support language
 
-| generate code  | support |
-| -------------- | ------- |
-| all            | ◯       |
-| dartFreezed    | ◯       |
-| dart           | -       |
-| ts             | -       |
-| tsBallcapAdmin | -       |
-| swift          | -       |
-| swiftBallcap   | -       |
-| kotlin         | -       |
+| generate code              | support | code example                                |
+| -------------------------- | ------- | ------------------------------------------- |
+| All                        | ◯       | -                                           |
+| Dart - Freezed             | ◯       | [code](./example/fdmd_output/dart_freezed/) |
+| Dart                       | -       | -                                           |
+| TypeScript                 | -       | -                                           |
+| TypeScript - Ballcap-Admin | -       | -                                           |
+| Swift                      | -       | -                                           |
+| Swift = Ballcap            | -       | -                                           |
+| Kotlin                     | -       | -                                           |
 
 ## Data Modeling
 

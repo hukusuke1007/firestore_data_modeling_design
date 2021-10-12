@@ -1,5 +1,5 @@
-import '../../converters/date_time_timestamp_converter.dart';
 import '../../thumbnail_image/thumbnail_image.dart';
+import '../../converters/date_time_timestamp_converter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -23,4 +23,7 @@ class Poster with _$Poster {
 
   static String get collectionPath => throw UnimplementedError(); // social/${socialId}/posters
   static String docPath(String id) => throw UnimplementedError(); // social/${socialId}/posters/$id
+  static String postsCollectionPath(String parentId) => throw UnimplementedError();
+  static String postsDocPath(String parentId, String id) => throw UnimplementedError();
+
 }
