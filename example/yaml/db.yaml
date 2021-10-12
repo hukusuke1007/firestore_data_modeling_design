@@ -1,4 +1,4 @@
-fdmd: 1.0
+fdmd: 1.0.0
 info:
   description: Firestore設計 => コード自動生成のサンプルyaml
   version: '1.0.0'
@@ -41,8 +41,9 @@ docs:
       - field: updatedAt
         type: timestamp,nullable
         example: '2021-09-16T13:10:52+09:00'
+    collections:
       - field: posts
-        type: collection,post
+        type: Post
   - name: Post
     path: /social/${socialId}/posters/${posterId}/posts/${postId}
     description: 投稿情報
@@ -54,12 +55,29 @@ docs:
       - field: text
         type: string,nullable
         example: テキスト内容
+      - field: likeCount
+        type: int,nullable
+        example: 10
+      - field: stars
+        type: double,nullable
+        example: 4.5
+      - field: isBookmark
+        type: bool,nullable
+        example: true
       - field: createdAt
         type: timestamp,nullable
         example: '2021-09-16T13:10:52+09:00'
       - field: updatedAt
         type: timestamp,nullable
         example: '2021-09-16T13:10:52+09:00'
+    collections:
+      - field: likes
+        type: Like
+  - name: Like
+    path: /social/${socialId}/posters/${posterId}/posts/${postId}/likes/${likeId}
+    description: 投稿情報
+    codeGenerate: true
+    dataReference: Poster
   - name: Color
     path: /master/${masterId}/colors/${colorId}
     description: カラー情報

@@ -10,6 +10,9 @@ class Post with _$Post {
   factory Post({
     String? title,
     String? text,
+    int? likeCount,
+    double? stars,
+    bool? isBookmark,
     @DateTimeTimestampConverter() DateTime? createdAt,
     @DateTimeTimestampConverter() DateTime? updatedAt,
   }) = _Post;
@@ -20,4 +23,7 @@ class Post with _$Post {
 
   static String get collectionPath => throw UnimplementedError(); // social/${socialId}/posters/${posterId}/posts
   static String docPath(String id) => throw UnimplementedError(); // social/${socialId}/posters/${posterId}/posts/$id
+  static String likesCollectionPath(String parentId) => throw UnimplementedError();
+  static String likesDocPath(String parentId, String id) => throw UnimplementedError();
+
 }
