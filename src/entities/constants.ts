@@ -13,10 +13,10 @@ export const dataType = {
 export const generateType = {
   all: 'all',
   dart: 'dart',
-  dartFreezed: 'dartFreezed',
+  dartFreezed: 'dart_freezed ',
   ts: 'ts',
-  tsBallcapAdmin: 'tsBallcapAdmin',
+  tsBallcapAdmin: 'ts_ballcap_admin',
   swift: 'swfit',
-  swiftBallcap: 'swiftBallcap',
+  swiftBallcap: 'swift_ballcap',
   kotlin: 'kotlin',
 }

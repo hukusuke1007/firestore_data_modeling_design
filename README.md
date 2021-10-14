@@ -35,16 +35,16 @@ node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir templat
 
 ### Support language
 
-| generate code              | support | generate code example                       |
-| -------------------------- | ------- | ------------------------------------------- |
-| All                        | ◯       | [code](./example/fdmd_output/)              |
-| Dart - Freezed             | ◯       | [code](./example/fdmd_output/dart_freezed/) |
-| Dart                       | -       | -                                           |
-| TypeScript                 | -       | -                                           |
-| TypeScript - Ballcap-Admin | -       | -                                           |
-| Swift                      | -       | -                                           |
-| Swift - Ballcap            | -       | -                                           |
-| Kotlin                     | -       | -                                           |
+| generate code              | support | command          | generate code example                           |
+| -------------------------- | ------- | ---------------- | ----------------------------------------------- |
+| All                        | ◯       | all              | [code](./example/fdmd_output/)                  |
+| Dart - Freezed             | ◯       | dart_freezed     | [code](./example/fdmd_output/dart_freezed/)     |
+| Dart                       | -       | -                | -                                               |
+| TypeScript                 | -       | -                | -                                               |
+| TypeScript - Ballcap-Admin | ◯       | ts_ballcap_admin | [code](./example/fdmd_output/ts_ballcap_admin/) |
+| Swift                      | -       | -                | -                                               |
+| Swift - Ballcap            | -       | -                | -                                               |
+| Kotlin                     | -       | -                | -                                               |
 
 ## Data Modeling
 

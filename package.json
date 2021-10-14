@@ -1,6 +1,6 @@
 {
   "name": "fdmd",
-  "version": "0.0.13",
+  "version": "0.0.17",
   "description": "firestore data modeling design tool",
   "main": "index.js",
   "bin": {

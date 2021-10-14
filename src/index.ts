@@ -3,6 +3,7 @@
 import * as rimraf from 'rimraf'
 import { generateType } from './entities/constants'
 import { DartFreezedGeneratorRepository } from './repositories/dart_freezed_generator_repository'
+import { TsBallcapAdminGeneratorRepository } from './repositories/ts_ballcap_admin_generator_repository'
 import { YamlRepository } from './repositories/yaml_repository'
 import { Utils } from './utils/utils'
 
@@ -19,26 +20,30 @@ const outputPath = `${process.cwd()}/fdmd_output`
 const tempPath = `${process.cwd()}/${tempFilePathName}`
 
 const cleanup = async (path: string) => {
-  console.log('🧹 cleanup')
+  console.log('🧹 cleanup', path)
   rimraf.sync(path)
 }
 
 const execute = async () => {
   try {
     console.log('🏃 generate type', generate)
-    cleanup(outputPath)
+
     const data = YamlRepository.fetch(yamlFilePath)
 
     // Dart - freezed
     if (generate === generateType.all || generate == generateType.dartFreezed) {
-      DartFreezedGeneratorRepository.execute(
-        data,
-        `${outputPath}/${Utils.camelToSnake(generateType.dartFreezed)}`,
-        `${tempPath}`,
-      )
+      const dirPath = `${outputPath}/${generateType.dartFreezed}`
+      cleanup(dirPath)
+      DartFreezedGeneratorRepository.execute(data, dirPath, `${tempPath}`)
     }
     // TypeScript todo
-    // TypeScript - Ballcap todo
+
+    // TypeScript - Ballcap
+    if (generate === generateType.all || generate == generateType.tsBallcapAdmin) {
+      const dirPath = `${outputPath}/${generateType.tsBallcapAdmin}`
+      cleanup(dirPath)
+      TsBallcapAdminGeneratorRepository.execute(data, dirPath, `${tempPath}`)
+    }
     // Swift todo
     // Swift - Ballcap todo
     // Kotlin todo

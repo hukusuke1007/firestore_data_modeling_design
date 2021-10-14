@@ -6,17 +6,7 @@ import { Utils } from '../utils/utils'
 import { OutputData } from '../entities/output_data'
 import { dataType } from '../entities/constants'
 
-const getDataFields = (doc: Doc, fdmd: Fdmd) => {
-  if (Utils.isNotNull(doc.dataReference)) {
-    const refDoc = fdmd.docs.find((e) => e.name === doc.dataReference)
-    const refDataFields = Utils.isNotNull(refDoc.data) ? refDoc.data.filter((e) => Utils.isNotNull(e.field)) : []
-    return refDataFields
-  }
-  const dataFields = Utils.isNotNull(doc.data) ? doc.data.filter((e) => Utils.isNotNull(e.field)) : []
-  return dataFields
-}
-
-const getDartType = (dataField?: DataField): string | null => {
+const getDataField = (dataField?: DataField): string | null => {
   if (Utils.isNull(dataField.type)) {
     return null
   }
@@ -54,7 +44,7 @@ const getDartType = (dataField?: DataField): string | null => {
   } else {
     result = `required ${result}`
   }
-  return result
+  return `${result} ${dataField.field}`
 }
 
 export class DartFreezedGeneratorRepository {
@@ -80,7 +70,7 @@ export class DartFreezedGeneratorRepository {
             const mapSnakeName = Utils.camelToSnake(map.name)
             const mapPath = `${outputPath}/${mapSnakeName}`
 
-            const dataFields = getDataFields(map, fdmd)
+            const dataFields = fdmd.getDataFields(map)
 
             // Map Model
             const mapModelNames = DataField.getMapModelNames(dataFields)
@@ -94,7 +84,7 @@ export class DartFreezedGeneratorRepository {
             }
 
             // DataField
-            const dataFieldsLine = getDataFields(map, fdmd).map((e) => `    ${getDartType(e)} ${e.field},`)
+            const dataFieldsLine = fdmd.getDataFields(map).map((e) => `    ${getDataField(e)},`)
 
             return new OutputData(mapModelNamesLine, dataFieldsLine, `${mapPath}/${mapSnakeName}.dart`, [], map)
           })
@@ -117,7 +107,7 @@ export class DartFreezedGeneratorRepository {
       lines.splice(offset, 0, ...data.dataFieleds)
 
       // Write
-      const stream = fs.createWriteStream(`${mapPath}/${mapSnakeName}.dart`, { encoding: 'utf8' })
+      const stream = fs.createWriteStream(data.outputFilePath, { encoding: 'utf8' })
       for (const l of lines) {
         stream.write(`${l}\n`)
       }
@@ -132,7 +122,7 @@ export class DartFreezedGeneratorRepository {
             const domainName = Doc.getDomainNameFromPath(doc.path)
             const docSnakeName = Utils.camelToSnake(doc.name)
             const docPath = `${outputPath}/${domainName}/${docSnakeName}`
-            const dataFields = getDataFields(doc, fdmd)
+            const dataFields = fdmd.getDataFields(doc)
 
             // Map Model
             const mapModelNames = DataField.getMapModelNames(dataFields)
@@ -146,7 +136,7 @@ export class DartFreezedGeneratorRepository {
             }
 
             // DataField
-            const dataFieldsLine = dataFields.map((e) => `    ${getDartType(e)} ${e.field},`)
+            const dataFieldsLine = dataFields.map((e) => `    ${getDataField(e)},`)
 
             // Collections
             const collectionLine = Utils.isNotNull(doc.collections)
