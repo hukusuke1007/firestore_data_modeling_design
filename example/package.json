@@ -9,6 +9,6 @@
   "author": "shohei",
   "license": "MIT",
   "devDependencies": {
-    "fdmd": "0.0.17"
+    "fdmd": "0.0.18"
   }
 }

@@ -38,8 +38,8 @@ node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir templat
 | generate code              | support | command          | generate code example                           |
 | -------------------------- | ------- | ---------------- | ----------------------------------------------- |
 | All                        | ◯       | all              | [code](./example/fdmd_output/)                  |
-| Dart - Freezed             | ◯       | dart_freezed     | [code](./example/fdmd_output/dart_freezed/)     |
 | Dart                       | -       | -                | -                                               |
+| Dart - Freezed             | ◯       | dart_freezed     | [code](./example/fdmd_output/dart_freezed/)     |
 | TypeScript                 | -       | -                | -                                               |
 | TypeScript - Ballcap-Admin | ◯       | ts_ballcap_admin | [code](./example/fdmd_output/ts_ballcap_admin/) |
 | Swift                      | -       | -                | -                                               |
