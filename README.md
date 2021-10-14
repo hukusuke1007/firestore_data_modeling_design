@@ -16,9 +16,7 @@ npm install --save-dev fdmd
 
 Copy from yaml dir and template dir to your current directory.
 
-[yaml](./yaml/)
-
-[template](./template/)
+[yaml](./yaml/), [template](./template/)
 
 ```sh
 # generate code
@@ -36,7 +34,7 @@ node_modules/.bin/fdmd --generate all --inputFile yaml/db.yaml --tempDir templat
 
 ### Support language
 
-| generate code              | support | code example                                |
+| generate code              | support | generate code example                       |
 | -------------------------- | ------- | ------------------------------------------- |
 | All                        | ◯       | [code](./example/fdmd_output/)              |
 | Dart - Freezed             | ◯       | [code](./example/fdmd_output/dart_freezed/) |
@@ -63,9 +61,9 @@ Can be design data modeling with yaml file.
 | bool      | ◯       |
 | nullable  | ◯       |
 
-### yaml
+### How to design yaml
 
-[yaml db sample](./yaml/db.yaml)
+[yaml sample](./yaml/db.yaml)
 
 #### Document
 
@@ -77,7 +75,7 @@ docs: # add
     codeGenerate: true # code generate
     data:
       - field: id
-        type: string # non - nullable
+        type: string # non nullable
         example: DocumentId
       - field: name
         type: string,nullable # nullable
