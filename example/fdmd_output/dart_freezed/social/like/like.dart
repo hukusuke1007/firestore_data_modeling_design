@@ -23,4 +23,5 @@ class Like with _$Like {
 
   static String get collectionPath => throw UnimplementedError(); // social/${socialId}/posters/${posterId}/posts/${postId}/likes
   static String docPath(String id) => throw UnimplementedError(); // social/${socialId}/posters/${posterId}/posts/${postId}/likes/$id
+
 }

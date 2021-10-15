@@ -103,8 +103,8 @@ export class DartFreezedGeneratorRepository {
       lines.splice(0, 0, ...data.imports)
 
       // DataField
-      const offset = lines.findIndex((e) => e.includes('factory')) + 1 // データフィールドを追加する行
-      lines.splice(offset, 0, ...data.dataFieleds)
+      const dataFieldOffset = lines.findIndex((e) => e.includes('$$FIELD'))
+      lines.splice(dataFieldOffset, 1, ...data.dataFieleds)
 
       // Write
       const stream = fs.createWriteStream(data.outputFilePath, { encoding: 'utf8' })
@@ -179,11 +179,11 @@ export class DartFreezedGeneratorRepository {
       lines.splice(0, 0, ...data.imports)
 
       // DataField
-      const dataFieldOffset = lines.findIndex((e) => e.includes('factory')) + 1 // データフィールドを追加する行
-      lines.splice(dataFieldOffset, 0, ...data.dataFieleds)
+      const dataFieldOffset = lines.findIndex((e) => e.includes('$$FIELD'))
+      lines.splice(dataFieldOffset, 1, ...data.dataFieleds)
 
-      const collectionOffset = lines.findIndex((e) => e.includes('static String docPath')) + 1 // データフィールドを追加する行
-      lines.splice(collectionOffset, 0, ...data.collectionFieleds)
+      const collectionOffset = lines.findIndex((e) => e.includes('$$SUBCOLLECTION'))
+      lines.splice(collectionOffset, 1, ...data.collectionFieleds)
 
       // Write
       const stream = fs.createWriteStream(data.outputFilePath, { encoding: 'utf8' })

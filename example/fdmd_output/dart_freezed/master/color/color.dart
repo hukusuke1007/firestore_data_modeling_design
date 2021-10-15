@@ -16,4 +16,5 @@ class Color with _$Color {
 
   static String get collectionPath => throw UnimplementedError(); // master/${masterId}/colors
   static String docPath(String id) => throw UnimplementedError(); // master/${masterId}/colors/$id
+
 }
