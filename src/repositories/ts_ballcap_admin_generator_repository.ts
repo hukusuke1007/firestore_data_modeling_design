@@ -113,7 +113,7 @@ export class TsBallcapAdminGeneratorRepository {
       ? fdmd.docs
           .filter((e) => Utils.isNotNull(e.name) && e.codeGenerate === true)
           .map((doc) => {
-            const domainName = Doc.getDomainNameFromPath(doc.path)
+            const domainName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
             const docSnakeName = Utils.camelToSnake(doc.name)
             const docPath = `${outputPath}/${domainName}`
             const dataFields = fdmd.getDataFields(doc)
@@ -148,6 +148,7 @@ export class TsBallcapAdminGeneratorRepository {
       : []
     for (const data of outputDocsData) {
       const doc = data.doc
+      // const domainCamelName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
       const domainName = Doc.getDomainNameFromPath(doc.path)
       const docCamelName = Utils.snakeToCamel(Utils.firstCharUpper(doc.name))
       const template = fs.readFileSync(`${tempPath}/ts_ballcap_admin_doc.temp`, 'utf8')

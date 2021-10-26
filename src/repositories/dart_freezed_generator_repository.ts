@@ -119,7 +119,7 @@ export class DartFreezedGeneratorRepository {
       ? fdmd.docs
           .filter((e) => Utils.isNotNull(e.name) && e.codeGenerate === true)
           .map((doc) => {
-            const domainName = Doc.getDomainNameFromPath(doc.path)
+            const domainName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
             const docSnakeName = Utils.camelToSnake(doc.name)
             const docPath = `${outputPath}/${domainName}/${docSnakeName}`
             const dataFields = fdmd.getDataFields(doc)
@@ -162,9 +162,9 @@ export class DartFreezedGeneratorRepository {
       : []
     for (const data of outputDocsData) {
       const doc = data.doc
-      const domainName = Doc.getDomainNameFromPath(doc.path)
+      const domainSnakeName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
       const docSnakeName = Utils.camelToSnake(doc.name)
-      const docPath = `${outputPath}/${domainName}/${docSnakeName}`
+      const docPath = `${outputPath}/${domainSnakeName}/${docSnakeName}`
       fs.mkdirSync(docPath, { recursive: true })
       const template = fs.readFileSync(`${tempPath}/dart_doc_freezed.temp`, 'utf8')
       const code = template

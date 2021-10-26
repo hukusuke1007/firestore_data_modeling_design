@@ -16,6 +16,9 @@ domains:
   - name: Master
     path: /master
     description: マスター管理
+  - name: AppService
+    path: /appService
+    description: アプリシステムの状態
 docs:
   - name: Poster
     path: /social/${socialId}/posters/${posterId}
@@ -86,6 +89,20 @@ docs:
       - field: codes
         type: string,array,nullable
         example: ['000000', FFFFFF]
+  - name: Maintenance
+    path: /appService/${appServiceId}/maintenance/${maintenanceId}
+    description: メンテナンス情報
+    codeGenerate: true
+    data:
+      - field: status
+        type: string
+        example: active
+      - field: createdAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
+      - field: updatedAt
+        type: timestamp,nullable
+        example: '2021-09-16T13:10:52+09:00'
 maps:
   - name: ThumbnailImage
     description: 画像情報
