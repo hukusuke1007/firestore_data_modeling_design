@@ -119,9 +119,9 @@ export class DartFreezedGeneratorRepository {
       ? fdmd.docs
           .filter((e) => Utils.isNotNull(e.name) && e.codeGenerate === true)
           .map((doc) => {
-            const domainName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
+            const domainSnakeName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
             const docSnakeName = Utils.camelToSnake(doc.name)
-            const docPath = `${outputPath}/${domainName}/${docSnakeName}`
+            const docPath = `${outputPath}/${domainSnakeName}/${docSnakeName}`
             const dataFields = fdmd.getDataFields(doc)
 
             // Map Model

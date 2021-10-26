@@ -113,9 +113,9 @@ export class TsBallcapAdminGeneratorRepository {
       ? fdmd.docs
           .filter((e) => Utils.isNotNull(e.name) && e.codeGenerate === true)
           .map((doc) => {
-            const domainName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
+            const domainSnakeName = Utils.camelToSnake(Doc.getDomainNameFromPath(doc.path))
             const docSnakeName = Utils.camelToSnake(doc.name)
-            const docPath = `${outputPath}/${domainName}`
+            const docPath = `${outputPath}/${domainSnakeName}`
             const dataFields = fdmd.getDataFields(doc)
 
             // Map Model
