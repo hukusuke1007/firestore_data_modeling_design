@@ -1,8 +1,8 @@
 fdmd: 1.0.0
 info:
+  title: Firestore Data Modeling
   description: Firestore設計 => コード自動生成のサンプルyaml
   version: '1.0.0'
-  title: Firestore Data Modeling
   termsOfService: https://github.com/hukusuke1007
   contact:
     email: xxxx@xxx.com
@@ -11,18 +11,18 @@ info:
     url: https://github.com/hukusuke1007
 domains:
   - name: Social
-    path: /social
     description: ソーシャル機能を管理
+    path: /social
   - name: Master
-    path: /master
     description: マスター管理
+    path: /master
   - name: AppService
-    path: /appService
     description: アプリシステムの状態
+    path: /appService
 docs:
   - name: Poster
-    path: /social/${socialId}/posters/${posterId}
     description: 投稿者の情報
+    path: /social/${socialId}/posters/${posterId}
     codeGenerate: true
     data:
       - field: id
@@ -48,8 +48,8 @@ docs:
       - field: posts
         type: Post
   - name: Post
-    path: /social/${socialId}/posters/${posterId}/posts/${postId}
     description: 投稿情報
+    path: /social/${socialId}/posters/${posterId}/posts/${postId}
     codeGenerate: true
     data:
       - field: title
@@ -77,21 +77,21 @@ docs:
       - field: likes
         type: Like
   - name: Like
+    description: いいね
     path: /social/${socialId}/posters/${posterId}/posts/${postId}/likes/${likeId}
-    description: 投稿情報
     codeGenerate: true
     dataReference: Poster
   - name: Color
-    path: /master/${masterId}/colors/${colorId}
     description: カラー情報
+    path: /master/${masterId}/colors/${colorId}
     codeGenerate: true
     data:
       - field: codes
         type: string,array,nullable
-        example: ['000000', FFFFFF]
+        example: ['000000', 'FFFFFF']
   - name: Maintenance
-    path: /appService/${appServiceId}/maintenance/${maintenanceId}
     description: メンテナンス情報
+    path: /appService/${appServiceId}/maintenance/${maintenanceId}
     codeGenerate: true
     data:
       - field: status
